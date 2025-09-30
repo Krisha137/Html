@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+    <form action="#" method="get">
+        <Fieldset>
+            <legend>User Detail</legend>
+            <label for="a1">Name</label>
+            <input type="text" id="a1" name="uname" placeholder="Enter name" minlength="2" maxlength="10" required autofocus autocomplete="on"><br>
+            <label for="a2">Password</label>
+            <input type="password" id="a2"><br>
+            <label for="a3">Email :</label>
+            <input type="email" id="a3"name="email"><br>
+            <label for="a4">Gender :</label>
+            <input type="radio" id="a4" name="gen" value="male" checked>Male
+                    <input type="radio" id="a4" name="gen" value="female">Female
+            <br>
+            <label for="a5">Hobbies :</label>
+            <input type="checkbox" id="a5" name="hob" value="music">Music
+                    <input type="checkbox" id="a5" name="hob" value="reading">reading<br>      
+                    </Fieldset>  
+        <fieldset>
+            <legend>Additional Data</legend>
+            Date of Birth:<input type="date" name="Dob" min="2025-09-07" max="2026-09-07"><br>
+            Age : <input type="number" min="0"max="110" name="age" step="1"><br>
+            Fovorite color : <input type="color" name="Favcolor" value="#0000ffff"> <br>
+            Prefered sports : <input list="sports" name="psport"> 
+            <datalist id="sports">
+                <option value="Cricket"></option>
+                <option value="Hockey"></option>
+                <option value="Foot boll"></option>
+            </datalist> <br>
+            Branch : <select name="branch">
+                <option value="select" Selected hidden>Select Branch</option>
+                <optgroup label="Computer">
+                    <option value="CE">CE</option>
+                    <option value="IT">IT</option>
+                </optgroup>
+                <optgroup label="Other">
+                    <option value="EC">Ec</option>
+                    <option value="Civil">Civil</option>
+                </optgroup>
+            </select><br>  
+            Remark : 
+            <textarea name="msg" rows="5" cols="20" >Enter your message</textarea><br>
+            Range : 
+            <input type="range" min="2" max="20" name="r" step="5">
+            <input type="file" name="resume" accept=".pdf,.doc"multiple>
+        </fieldset>
+            <input type="submit">
+            <input type="reset">
+        
+    </form>
+</body>
+</html>
