@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        p.abc{color:green;text-align:center}
+        <!-- .xyz{color:yellow}
+        #mno{color:royalblue} --> no change id has highest priority
+        .xyz{color:yellow}
+        #mno{color:royalblue}
+    </style>
+</head>
+<body>
+    <h1 Class="abc xyz">Class base</h1>
+    <p class="abc">You can use without issue</p>
+    <p class="abc" id="mno">see the efect   </p>
+</body>
+</html>

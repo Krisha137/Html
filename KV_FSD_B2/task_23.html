@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .container{display:grid;
+    grid-template-columns: 200px 1fr 2fr;
+    grid-template-rows: repeat(3,1);
+    gap:10px;
+    padding:10px;
+    background-color: cyan;
+    margin-bottom: 40 px;}
+    .inner{
+    border:1px solid;
+    padding:10px;
+    background-color: tomato;
+    text-align: center;}
+    .a{grid-column :3/4;
+    grid-row: 2/3;
+    }
+    .b{grid-row: 1/2;
+    grid-column: 1/2;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="a">Div A</div>
+        <div class="inner">Div B</div>
+        <div class="inner">Div C</div>
+        <div class="inner">Div D</div>
+        <div class="inner">Div E</div>
+        <div class="b">Div F</div>
+        <div class="inner">Div G</div>
+        <div class="inner">Div H</div>
+        <div class="inner">Div I</div>
+    </div>
+</body>
+</html>

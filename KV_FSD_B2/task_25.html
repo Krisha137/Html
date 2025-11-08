@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .container{
+            margin-top: 50px;
+            height: 800px;
+            border: 1px solid red;
+            position: relative;
+        }
+        .test{margin-left: 20px;
+        height: 100px;
+        width: 100px;
+        text-align: center;
+        border: 1px solid black;}
+
+        #a{background-color: tomato;
+            top:50px;
+            z-index: 1;
+            left:50px;
+        }
+        #b{position: relative;
+        background-color: rgb(159, 106, 209);
+        top:50px;
+        left:50px;}
+        #c{position: absolute;
+        background-color: rgb(89, 172, 41);
+        top:50px;
+        z-index: -1;
+        left:50px}
+        #d{position: fixed;
+        background-color: rgb(82, 6, 56);
+        top:0px;
+        left:50px}
+        #e{position: sticky;
+        background-color: rgb(235, 40, 105);
+        top:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="test" id="a">Box1</div>
+        <div class="test" id="b">Box2</div>
+        <div class="test" id="c">Box3</div>
+        <div class="test" id="d">Box4</div>
+        <div class="test" id="e">Box</div>
+    </div>
+    <div class="container">
+        <div class="test" id="a">Box1</div>
+        <div class="test" id="b">Box2</div>
+        <div class="test" id="c">Box3</div>
+        <div class="test" id="d">Box4</div>
+        <div class="test" id="e">Box</div>
+    </div>
+</body>
+</html>
