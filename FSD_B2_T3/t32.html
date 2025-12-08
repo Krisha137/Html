@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <form action="#" method="get">
+            <div class="mb-3">
+                UserName : 
+                <input type="text" class="form-control" placeholder="Enter Your Name(without label)">
+            </div>
+            <div class="mb-3">
+                <label >UserName :</label>
+                <input type="text">  
+            </div>
+            <div>
+                <label class="form-label">UserName :</label> 
+                <input type="text" class="form-control" placeholder="Enter Your Name(using label)">  
+            </div>
+            <div>
+                <label class="form-label">Email :</label> 
+                <input type="email" class="form-control" placeholder="Enter Your Email">  
+            </div>
+            <div>
+                <label class="form-label">Password :</label> 
+                <input type="password" class="form-control" placeholder="Enter Your Password">  
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Select City</label>
+                <select class="form-select">
+                    <optgroup label="Asia">
+                        <option>India</option>
+                        <option>China</option>
+                    </optgroup>
+                    <optgroup label="Australia">
+                        <option>Malbourne</option>
+                        <option>Sydney</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <textarea class="form-control" placeholder="Hello👋🏼"></textarea>
+            </div>
+            <div class="form-check mb-3">
+                <input type="radio" class="form-check-input" checked name="opt">
+                <label class="form-check-label">Male</label>
+            </div>
+            <div class="form-check mb-3">
+                <input type="radio" class="form-check-input" name="opt">
+                <label class="form-check-label">Female</label>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Intrest : </label>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="opt">
+                <label class="form-check-label">Study</label>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="opt">
+                <label class="form-check-label">Photography</label>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" name="opt">
+                <label class="form-check-label">Travelling</label>
+            </div>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="myswitch" checked>
+                <label class="form-check-label" for="myswitch">ON/OFF</label>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">&copy</span>
+                <input type="text" class="form-control" placeholder="Name Of Author">
+            </div>
+            <div class="mb-3">
+                0<input type="range" class="form-range" min="1" max="100" step="10">100
+            </div>
+            <div class=" mb-3">
+                <div class="d-flex justify-content-between">
+                <span >Bad</span>
+                <span >Avg</span>
+                <span >Satisfactory</span>
+                <span >Good</span>
+                <span >Excellent</span>
+                </div>
+                <input type="range" class="form-range" min="0" max="5" step="1">
+            </div>
+            <div>
+                <label class="form-label"></label> 
+                <button type="submit" class="btn btn-info">Submit</button>  
+            </div>
+        </form>
+    </div>
+</body>
+</html>
