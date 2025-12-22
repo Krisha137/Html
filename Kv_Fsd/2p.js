@@ -1,0 +1,7 @@
+document.write("Hello Students")
+document.writeln("Have you Observe Somthing.")
+document.write("Hello Sir")
+document.write("Hello Madam<br>")
+document.write("<h1>Hii</h1>This is Externle")
+document.writeln("Have you Observe Somthing.")
+console.log("I am still on console for showing error msgs.")
