@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+        // 1. push()
+        let arr=["Apple","Banana"]
+        arr.push("Chiku")
+        console.log(arr)
+        console.log("----------------------------")
+        // 2. pop()
+        let score=[10,20,30]
+        let r=score.pop()
+        console.log(score)
+        console.log(r)
+        console.log("----------------------------")
+        // 3. map()
+        let num=[1,2,3,4]
+        let squre=num.map(num=>num*num)
+        console.log(squre)
+        console.log(num)
+        console.log("----------------------------")
+        // 4. filter()
+        let age=[5,18,20,32]
+        let adult=age.filter(a=>a>=18)
+        console.log(adult)
+        console.log("----------------------------")
+        // 5. forEach()
+        let uname=["a","b","c"]
+        uname.forEach(a=>{console.log("Hello"+a)})
+        console.log("----------------------------")
+        // 6. includes()
+        let color=["Red","Black","White"]
+        console.log(color.includes("Green"))
+        console.log(color.includes("Black"))
+        console.log("----------------------------")
+        // 7. find()
+        let user=[{id:0,name:"abc"},{id:1,name:"pqr"},{id:2,name:"xyz"}]
+        console.log(user[1])
+        console.log(user[1].name)
+        console.log(user[1].id)
+        let data=user.find(u=>u.id===2)
+        console.log(data)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

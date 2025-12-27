@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+        function fun(){
+            alert("Hello Students")
+        }
+        console.log("--------------------------------")
+        function fun1(fname,lname){
+            document.write("Welcome "+fname+" "+lname)
+        }
+        console.log("--------------------------------")
+        function fun2(fname,lname){
+            var full=fname+" "+lname
+            return full
+        }
+        function hello(){
+            let r=fun2("a","b")
+            document.write(r)
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="click me" onclick="fun()">
+    <input type="button" value="click me" onclick="fun1('abc','pqr')">
+    <input type="button" value="click me" onclick="hello()">
+</body>
+</html>
