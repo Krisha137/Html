@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+        function fun(a,b,...c){
+            console.log(a) // 1
+            console.log(b) // 2
+            console.log(c) // [3, 4, 5, 6]
+        }
+        fun(1,2,3,4,5,6)
+        console.log("-----------------------")
+        function fun1(a,b,...c){
+            console.log(`${a} ${b}`) // abc mno
+            console.log(c) // ['pqr', 'xyz', 'xyz', 'ufo']
+            console.log(c[0]) // pqr
+            console.log(c.length) // 4
+            console.log(c.indexOf("xyz")) // 1
+            console.log(c.indexOf("abc")) // -1
+        }
+        fun1("abc","mno","pqr","xyz","xyz","ufo")
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

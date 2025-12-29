@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+        function fun(bg,tx,size='10px',st='italic'){
+            i=document.getElementById('a')
+            i.style.color=tx
+            i.style.backgroundColor=bg
+            i.style.fontSize=size
+            i.style.fontStyle=st
+        }
+    </script>
+</head>
+<body>
+    <p id="a">Hello</p>
+    <input type="submit" onclick='fun("tomato","cyan")'>
+</body>
+</html>
