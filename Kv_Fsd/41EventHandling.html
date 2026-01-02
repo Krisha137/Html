@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <p id="a" onclick="fun()">Hello</p>
+    <p id="b" onclick="fun1(this)">Hii Sir</p>
+    <p onclick="this.innerHTML='Welcome Madam'">Hii Madam</p>
+    <script>
+        function fun(){
+            document.getElementById("a").innerHTML="Welcome"
+        }
+        function fun1(e){
+            e.innerHTML="Welcome Sir"
+        }
+    </script>
+</body>
+</html>

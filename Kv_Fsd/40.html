@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+        
+    </script>
+</head>
+<body>
+    <img src="b.png" id="a">
+    <button onclick="fun()">change</button>
+    <button id="b" onclick="fun1()">Zoom In</button>
+    <script>
+        let i=document.querySelector("#a")
+        let j=document.querySelector("#b")
+        function fun(){
+            if (i.getAttribute("src")==="b.png"){
+                i.setAttribute("src","c.png")
+            }
+            else{
+                i.setAttribute("src","b.png")
+            }
+        }
+        function fun1(){
+            if (i.style.width==="500px"){
+                i.style.width="250px"
+                j.innerHTML="Zoom In"
+            }
+            else{
+                i.style.width="500px"
+                j.innerHTML="Zoom Out"
+            }
+        }
+    
+    </script>
+</body>
+</html>
