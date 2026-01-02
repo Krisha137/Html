@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+    </script>
+</head>
+<body>
+    <p>I am outside div</p>
+    <div>
+        <p>I am Inside Div</p>
+        <h4>I am heading</h4>
+    </div>
+    <button onclick="fun2()">Click</button>
+    <script>
+        function fun2(){
+            let i=document.querySelector("div p")
+            i.style.color= "tomato"
+            i.style.textTransform="uppercase"
+        }
+    </script>
+</body>
+</html>
