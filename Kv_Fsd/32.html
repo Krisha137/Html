@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript" type="text/javascript">
+    </script>
+</head>
+<body>
+    <p class="b">Hello</p>
+    <p class="b">Hii</p>
+    <button onclick="fun2()">Click</button>
+    <script>
+        function fun2(){
+            let i=document.getElementsByClassName("b")
+            // i[0].innerHTML="How R U?" Only change on Hello because it's index is 0
+            for (let p of i){
+                p.innerHTML="How R U?"
+            }
+        }
+    </script>
+</body>
+</html>
