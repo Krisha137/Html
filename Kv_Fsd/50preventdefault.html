@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    
-</head>
-<body>
-    <form action="a.png" onsubmit="fun(event)">
-        <input type="submit">
-    </form>
-    <script>
+    <head>
+
+    </head>
+    <body>
+        <form action="a.png" onsubmit="fun(event)">
+            <input type="submit">
+        </form>
+        <script>
         function fun(e){
-            e.preventDefault()
+            e.preventDefault() // If i am not writing this then imgage will apperar
             alert("Will Not Allow To Submit")
+
+            //or 
+            // alert("Will Not Allow To Submit")
         }
     </script>
-</body>
+    </body>
 </html>
