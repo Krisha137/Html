@@ -1,0 +1,31 @@
+<!-- Write a Task For Mouse Event-->
+<!-- 1. If mouse is over heading it should turn yellow If mouse goes out it should turn black-->
+<!-- 2. If Button Named Find Time is click then show date and time information -->
+<!-- 3.If button named red is click then cackground color should turn red and button named green is click then backgroung color should turn green -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <h1 onmouseOver="this.style.color='yellow'" onmouseout='this.style.color="black"'>Hello</h1>
+    <p id="a"></p>
+    <button onclick="fun2()">Find Time</button>
+    <button  onclick="fun31()">Red</button>
+    <button  onclick="fun32()">Green</button>
+    <script>
+        function fun2(){
+            let d=new Date()
+            document.getElementById('a').innerHTML=d
+        }
+        function fun31(){
+            i=document.querySelector("body")
+            i.style.backgroundColor="red"
+        }
+        function fun32(){
+            i=document.querySelector("body")
+            i.style.backgroundColor="green"
+        }
+    </script>
+</body>
+</html>

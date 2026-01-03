@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <input type="text" onfocus="this.style.backgroundColor='yellow'">
+    <input type="text" oninput="this.value=this.value.toLowerCase()">
+    <input type="text" onblur="this.style.color='blue'">
+    <form action="#" onsubmit="fun()">
+        <input type="text" id="a" name="fname">
+        <input type="text" name="lname">
+        <input type="submit">
+    </form>
+    <script>
+        function fun(){
+            let data=document.getElementById('a').value
+            alert("Wecome "+data)
+        }
+    </script>
+</body>
+</html>

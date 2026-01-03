@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+    <div onmouseOver="this.style.color='tomato'">Hello</div>
+    <div onmouseout="this.style.backgroundColor='cyan'">Hi</div>
+    <div onmousedown='fun(this)' onmouseup='fun2(this)' style="height:100px;width:100px;background-color:pink"></div>
+    <script>
+        function fun(e){
+            e.innerHTML="on Button Press"
+            e.style.backgroundColor="cyan"
+        }
+        function fun2(e){
+            e.innerHTML="On Button Relese"
+            e.style.backgroundColor="tomato"
+        }
+    </script>
+    
+</body>
+</html>

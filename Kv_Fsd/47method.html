@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select onchange="fun(event)">
+        <option value="red">RED</option>
+        <option value="green">GREEN</option>
+    </select>
+    <script>
+        function fun(e){
+            alert(e.target.value)
+            alert(e.target.tagName)
+            alert(e.type)
+        }
+    </script>
+</body>
+</html>
