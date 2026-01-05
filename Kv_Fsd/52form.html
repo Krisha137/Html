@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <form name="formed" onsubmit="fun()">
+        <input type="text" name="fname" id="f1">
+        <input type="text" name="lname" id="f1">
+        <input type="submit">
+        <input type="reset">
+    </form>
+    <script>
+        function fun(){
+            //M-1  var obj=document.formed.fname.value
+            //M-2  var obj=document.forms["formed"]["fname"].value
+            /* M-3 */ var obj=document.getElementById("f1").value
+            alert(" Submit Successfully!!!")
+            alert("Welcome 👋"+obj)
+            var l=document.forms["formed"]
+            alert(l.length) // 4
+        }
+    </script>
+</body>
+</html>

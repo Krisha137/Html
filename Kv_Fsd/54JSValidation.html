@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <input type="text" id="t1">
+    <input type="submit" onclick="fun()">
+    <script>
+        function fun(){
+            // Pat=/abc/
+            // Pat=/abc/i
+            // Pat=/[abc]/
+            // Pat=/[^abc]/
+            // Pat=/[0-9]/
+            // Pat=/[^0-9]/
+            // Pat=/(x|y)/
+            // Pat =/^A/
+            // Pat =/bo*/
+            // Pat =/t$/
+            // Pat =/\W/
+            // Pat =/\w/
+            // Pat =/\d/
+            // Pat =/\D/
+            // Pat =/\+/
+            // Pat =/\?/
+            // Pat =/^\d{10}$/ // for phone number
+            Pat =/^[A-Za-z]+$/ // only letters and minimum 1 letter is required a-z A-Z
+            u=document.getElementById("t1").value
+            if(Pat.test(u)){alert("Perfect "+u)}
+            else{alert("Enter Proper Value")}
+        }
+    </script>
+</body>
+</html>

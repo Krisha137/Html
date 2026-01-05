@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- We can only write number -->
+</head>
+<body>
+    <input type="text"  id="a">
+    <script>
+        const input=document.querySelector("#a")
+        input.addEventListener("keydown",e=>{if(isNaN(e.key)&&(e.key!="Backspace")){e.preventDefault()}})
+    </script>
+</body>
+</html>
