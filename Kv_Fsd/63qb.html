@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="a" type="text" placeholder="Enter Product Item "><br>
+    <input id="b" type="numeric" placeholder="Enter Product Price "><br>
+    <input id="c" type="numeric" placeholder="Enter Product Discount "><br>
+    <button onclick="saveu()">Save</button>
+    <button onclick="removed()">Remove Discount</button>
+    <script>
+        function saveu(){
+            let a=document.getElementById("a").value
+            let b=document.getElementById("b").value
+            let c=document.getElementById("c").value
+            localStorage.setItem("Item",a)
+            localStorage.setItem("Price",b)
+            localStorage.setItem("Discount",c)
+        }
+        function removed(){
+            let r=localStorage.removeItem("Discount")
+            console.log("Item Name : ",localStorage.getItem("Item"))
+            console.log("Item Price : ",localStorage.getItem("Price"))
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="a" placeholder="Lakho">
+    <button onclick="saveu()">Save</button>
+    <button onclick="showu()">Show</button>
+    <button onclick="clearu()">Clear</button>
+    <p id="demo"></p>
+    <script>
+        function saveu(){
+            let t=document.getElementById("a").value
+            let users=JSON.parse(localStorage.getItem("user"))||[]
+            users.push(t)
+            localStorage.setItem("user",JSON.stringify(users))
+        }
+        function showu(){
+            let users=JSON.parse(localStorage.getItem("user"))||[]
+            document.getElementById("demo").innerHTML="Users : "+ users.join("<br>")
+        }
+        function clearu(){
+            localStorage.clear()
+            sessionStorage.clear()
+            document.getElementById("demo").innerHTML="All Clear"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  only one . is valid for username -->
+    <!-- Not Complete -->
+</head>
+<body>
+    <input type="text" value="User Name" id="t1" >
+    <input type="password" id="p1">
+    <input type="submit" onclick="fun()">
+    <script>
+        function fun(){
+            Pat=/^_|^@|^\d/
+            u=document.getElementById("t1").value
+            v=document.getElementById("p1").value
+            if(v.length==0||u.length==0){alert("Can't Blank ")}
+            else if (v.length<6||v.length>12){alert("Password Must between 6 to 12")}
+            else{alert("Password is Strong")}
+            if(Pat.test(u) || u.length<3){alert("Enter Valid User")}
+        }
+    </script>
+</body>
+</html>

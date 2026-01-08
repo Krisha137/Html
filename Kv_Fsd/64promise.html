@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const order=new Promise((resolve,reject)=>{
+            // let success=true;  // then : => Order Placed Process Finished
+            // let success=false; // Order Cancel Process Finished
+            // let success=false11; // it will gave error so go in catch => ReferenceError Process Finished
+            let success="Cancel"; // Order Placed Process Finished
+            setTimeout(()=>{
+                if(success){
+                    resolve("Order Placed")
+                }
+                else{
+                    reject("Order Cancel")
+                }
+            },2000)
+        })
+        order
+        .then(result=>console.log(result))
+        .catch(Error=>console.log(Error))
+        .finally(()=>console.log("Process Finished"))
+    </script>
+</body>
+</html>

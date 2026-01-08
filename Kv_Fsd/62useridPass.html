@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Not Complete  -->
+    <!-- Go to site => extra => Project => Advanced => in that task of login Admin -->
+</head>
+<body>
+    <input type="text" id="a" placeholder="User Id">
+    <input type="password" id="b" placeholder="Enter Your Password">
+    <button onclick="saveu()">Login</button>
+    <button onclick="showu()">Show</button>
+    <button onclick="clearu()">Clear</button>
+    <p id="demo"></p>
+    <script>
+        function saveu(){
+            let t=document.getElementById("a").value
+            let users=JSON.parse(localStorage.getItem("user"))||[]
+            users.push(t)
+            localStorage.setItem("user",JSON.stringify(users))
+        }
+        function showu(){
+            let users=JSON.parse(localStorage.getItem("user"))||[]
+            document.getElementById("demo").innerHTML="Users : "+ users.join("<br>")
+        }
+        function clearu(){
+            localStorage.clear()
+            sessionStorage.clear()
+            document.getElementById("demo").innerHTML="All Clear"
+        }
+    </script>
+</body>
+</html>
