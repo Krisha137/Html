@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <script>
+        var d1={name:"ABC",age:20} // <-- ''
+        // document.writeln(d1) // before '' --> [object Object] AND after '' -->  {name:"ABC",age:20}
+        // document.writeln(JSON.stringify(d1)) // "{name:\"ABC\",age:20}"
+        // var d2=JSON.stringify(d1)
+        // document.writeln(d1.name) // ABC  before '' --> undefined
+        // console.log(d2.age) // undefined
+        // var p1=JSON.parse(d2)
+        // console.log(p1.name) // ABC    before '' --> undefined
+        // document.writeln(p1.age) // 20   before '' --> undefined
+
+        document.write(d1.age) // 20   before '' --> undefined
+    </script>
+</body>
+</html>

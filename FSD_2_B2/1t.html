@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- First Method that How to write -->
+</head>
+<body>
+    <script>
+        var data={
+            name:"ABC",
+            age:20,
+            city:"Ahemdabad",
+            present:true,
+            marks:{FSD2:20,Python:18},
+            friends:["xyz","pqr","mno"],
+            test:{test1:{b1:36,b2:36,b3:[35,36,37]}}
+        }   
+        console.log(data) // {name: 'ABC', age: 20, city: 'Ahemdabad', present: true, marks: {…}, …}
+        console.log(data.name) // ABC
+        console.log(data["age"]) // 20
+        console.log(data["city"]) // Ahemdabad
+       //  console.log(data[city]) // ReferenceError
+        console.log(data.marks.Python) // 18
+        console.log(data["marks['FSD2']"]) // undefined
+        console.log(data.marks['FSD2']) // 20
+        console.log(data.friends[1]) // pqr
+        console.log(data.test.test1.b2) // 36
+        console.log(data.test.test1.b3[2]) // 37
+    </script>
+</body>
+</html>
