@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    =
+</head>
+<body>
+<script>
+    var obj=`{"name":"dhriti","age":10,"dob":"2010-02-24"}`
+    
+    function data(){
+        obj=JSON.parse(obj)
+        document.getElementById("x").innerHTML=`Name is ${obj["name"]} <br> Age is ${obj["age"]} `//Name is dhriti  Age is 10
+        document.getElementById("y").innerHTML=`Date is ${obj["dob"]}`// Date is 2010-02-24
+        // document.getElementById("y").innerHTML=`Date is in Indian Starndard Formate ${new Date(obj.dob)}`// Date is in Indian Starndard Formate Wed Feb 24 2010 05:30:00 GMT+0530 (India Standard Time)
+    }
+</script>
+<button class="btn" onclick="data()">Click Here</button>
+<h1 id="x"></h1>
+<h3 id="y"></h3>
+</body>
+</html>

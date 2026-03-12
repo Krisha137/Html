@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <script>
+        var a=["xyz","pqr","mno","jkn","dfg"]
+        function firstlast(p){
+            var o={}
+            o[p[0]]=p[p.length-1]
+            return o;
+        }
+        document.writeln((JSON.stringify(firstlast(a)))) // {"xyz":"dfg"}
+    </script>
+</body>
+</html>
