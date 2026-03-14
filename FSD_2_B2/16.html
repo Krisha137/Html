@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="a" style="font-size: 50pz;">Hello Mem🤩</p>
+    <button onclick=increse()>Increse</button>
+    <button onclick=decrese()>Decrese</button>
+    <button onclick=stop()>Stop</button>
+    <script>
+        var f=50
+        function temp(f){
+            document.getElementById("a").style.fontSize=f+"px";
+        }
+        function increse(){
+            i=setInterval(()=>{
+                if (f<150)
+                {
+                    temp(++f)
+                }
+        },100)}
+        function decrese(){
+            i=setInterval(()=>{
+                if (f>20)
+                {
+                    temp(--f)
+                }
+        },100)}
+        function stop(){
+            clearInterval(i)
+        }
+        
+    </script>
+</body>
+</html>

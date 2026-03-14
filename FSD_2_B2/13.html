@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <script>
+        // asyncronance way to call function
+        function abc(name,callback){
+            console.log("Welcome "+name) // Welcome xyz
+            callback();
+        }
+        function my(){
+            console.log("End execution"); // End execution
+        }
+        abc("xyz",my)
+    </script>
+</body>
+</html>
