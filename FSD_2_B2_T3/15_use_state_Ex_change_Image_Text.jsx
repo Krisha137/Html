@@ -1,0 +1,20 @@
+import { useState } from "react";
+import img1 from "./assets/img1.png"
+import img2 from "./assets/img2.png"
+import img3 from "./assets/img3.png"
+
+function US4(){
+    const img=[img1,img2,img3]
+    const [image,setimage]=useState(img[0]);
+    
+
+    function handleimage(){
+        setimage(img[Math.floor(Math.random() * img.length)])
+    }
+    return (
+        <>
+        <img src={image} alt="Image" width="300" height="300"/>
+        <button onClick={handleimage}>Change Image</button>
+        </>
+    )
+}export default US4;
