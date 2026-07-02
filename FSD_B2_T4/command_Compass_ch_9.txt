@@ -1,0 +1,952 @@
+ch-9    10
+ch-10   15  MongoDB
+https://projectdata-ten.vercel.app/
+
+===================================================================================
+
+SQL               NOSQL
+RDBMS             DBMS
+Database          database
+table             Collection
+row               document
+Column            field
+
+===================================================================================
+
+mongod --version
+mongosh
+
+mongosh after this 
+test>--
+show dbs  --> show database
+use ljub2  --> create database
+ljub2>
+
+
+bd.dropDatabase() --> drop current database 
+                  { ok: 1, dropped: 'ljub2' }
+db.createCollection("student")  --> name of collection(table) is student
+db.student.renameCollection("students") --> rename of the collections
+db.createCollection("products")
+db.products.drop() --> drop perticuler collection
+show collections  --> show all existing collections 
+
+===================================================================================
+
+db.student.insertOne({name:"ABC",age:15,marks:83})  --> insert data One
+                       |          |       |
+                       --------------------
+                                |
+                                field(Column)
+db.students.find() --> show inserted data
+
+===================================================================================
+
+db.students.insertMany([{name:"PQR",age:17,city:"Ahmedabad",marks:75},
+                        {name:"ABC",age:13,city:"Surat",marks:85},
+                        {name:"XYZ",age:16,city:"Rajkot",marks:55}])
+                        --> insert many documents(rows)
+
+===================================================================================
+
+db.students.find({name:"ABC"}) --> find doctument whoes name is ABC 
+db.students.find({name:"ABC",city:"Rajcot"}) --> find doctument whoes name is ABC and city is Rajcot
+
+# db.collection.find(query/filter/condition/projection)
+
+# in projection 1 atle tej and 0 atle te sivay nu
+
+===================================================================================
+
+db.students.find({},{age:1}) --> 
+                  [
+                        { _id: ObjectId("6a38b54b908c3a149af49124"), age: 15 },
+                        { _id: ObjectId("6a38b6e4908c3a149af49125"), age: 17 },
+                        { _id: ObjectId("6a38b6e4908c3a149af49126"), age: 16 },
+                        { _id: ObjectId("6a38b6e4908c3a149af49127"), age: 13 }
+                        ]
+
+===================================================================================
+
+db.students.find({},{age:1,_id:0}) --> 
+                    [ { age: 15 }, { age: 17 }, { age: 16 }, { age: 13 } ]
+
+
+
+db.students.find({},{age:0,_id:0}) --> 
+                    [
+                    { name: 'ABC', marks: 83 },
+                    { name: 'PQR', city: 'Ahmedabad', marks: 76 },
+                    { name: 'XYZ', city: 'Surat', marks: 85 },
+                    { name: 'ABC', city: 'Rajcot', marks: 55 }
+                    ]
+                    
+===================================================================================
+
+db.students.find({name:"ABC"},{city:1,_id:0})--> find city whose name is ABC
+                                   [ {}, { city: 'Rajcot' } ]
+
+===================================================================================
+
+Ex-- display name and marks of all the students who belong to surat
+
+db.students.find({city:"Surat"},{name:1,marks:1,_id:0}) -->
+                        [
+                        { name: 'XYZ', marks: 85 },
+                        { name: 'XYZ' },
+                        { name: 'PQR', marks: 93 }
+                        ]   
+another option--------
+db.students.find({city:"Surat"},{age:0,city:0,_id:0})
+
+===================================================================================
+
+db.students.find({city:"Surat"}).limit(10).skip(1) -->
+                            [
+                            {
+                                _id: ObjectId("6a38bcda908c3a149af49129"),
+                                name: 'XYZ',
+                                city: 'Surat'
+                            },
+                            {
+                                _id: ObjectId("6a38bcda908c3a149af4912a"),
+                                name: 'PQR',
+                                age: 13,
+                                city: 'Surat',
+                                marks: 93
+                            }
+                            ]
+===================================================================================
+
+update marks 
+first match
+db.students.updateOne({marks:83},{$set:{marks:86}}) -->
+                        {
+                        acknowledged: true,
+                        insertedId: null,
+                        matchedCount: 1,
+                        modifiedCount: 1,
+                        upsertedCount: 0
+                        }
+
+===================================================================================
+
+name = PQR and marks = 93 it's age update to 20
+db.students.updateOne({name:"PQR",marks:93},{$set:{age:20}})
+
+===================================================================================
+
+ljub2> db.students.updateOne({name:"PQR",marks:93},{$set:{name:"XYZ",age:18}},{upsert:true})
+ it will look like this -------------
+                      {
+                        _id: ObjectId("6a38bcda908c3a149af4912a"),
+                        name: 'XYZ',
+                        age: 18,
+                        city: 'Surat',
+                        marks: 93
+                    }
+                     
+
+===================================================================================
+
+db.students.deleteOne({city:"Ahmedabad"})
+
+db.students.deleteMany({})  --> delete all documents
+
+===================================================================================
+
+// Database
+
+db.myproducts.insertMany([{name:"tshirt",price:800,qty:10,category:"fashion"},
+{name:"sofa",price:45000,qty:5,category:"home"},
+{name:"tv",price:57000,qty:3,category:"electronic"},
+{name:"shirt",price:2800,qty:8,category:"fashion"},
+{name:"table",price:13000,qty:5,category:"home"},
+{name:"mobile",price:37000,qty:7,category:"electronic"}])
+
+
+------------------------------------------------------------------------------------------
+
+
+Ex--  Display products where category is electronics
+
+--> db.myproducts.find({category:'electronic'})
+    [
+    {
+        _id: ObjectId("6a3cc9bb010924bfea74c22a"),
+        name: 'tv',
+        price: 57000,
+        qty: 3,
+        category: 'electronic'
+    },
+    {
+        _id: ObjectId("6a3cc9bb010924bfea74c22d"),
+        name: 'mobile',
+        price: 37000,
+        qty: 7,
+        category: 'electronic'
+    }
+    ]
+
+------------------------------------------------------------------------------------------
+
+Ex-- Update price of the product to 34000 where category is electronis and name is 
+     washingmachine if no such document is available then insert new document.
+
+
+-->  db.myproducts.updateOne({category:'electronic',name:'washingmachine'},{$set:{price:34000}},{upsert:true})
+        {
+        acknowledged: true,
+        insertedId: ObjectId("6a3ccce03ed773ee33e4a5c9"),
+        matchedCount: 0,
+        modifiedCount: 0,
+        upsertedCount: 1
+        }
+
+
+------------------------------------------------------------------------------------------
+
+Unset -----------
+
+--> db.myproducts.updateMany({qty:5},{$unset:{price:"",category:1}})
+        {
+        acknowledged: true,
+        insertedId: null,
+        matchedCount: 2,
+        modifiedCount: 2,
+        upsertedCount: 0
+        }
+
+in database -------
+
+    _id    6a3cc9bb010924bfea74c229                _id    6a3cc9bb010924bfea74c22c
+    name  "sofa"                                    name  "table"
+    qty    5                                        qty    5
+
+
+------------------------------------------------------------------------------------------
+
+rename ---------
+
+
+-->  db.myproducts.updateMany({},{$rename:{'name':'pname','category':'cat'}})
+        {
+        acknowledged: true,
+        insertedId: null,
+        matchedCount: 7,
+        modifiedCount: 7,
+        upsertedCount: 0
+        }
+
+
+in database -------
+
+            _id     6a3cc9bb010924bfea74c228
+            price   800
+            qty     10
+          > cat     "fashion"
+          > pname   "tshirt"
+
+
+------------------------------------------------------------------------------------------
+
+increment-----------------
+
+
+Ex-- increment qty by 2.
+
+-->  db.myproducts.updateMany({},{$inc:{qty:2}})
+        {
+        acknowledged: true,
+        insertedId: null,
+        matchedCount: 7,
+        modifiedCount: 7,
+        upsertedCount: 0
+        }
+
+Ex-- decrement 5 where qty is 12 
+
+-->  db.myproducts.updateMany({qty:12},{$inc:{qty:-5}})
+        {
+        acknowledged: true,
+        insertedId: null,
+        matchedCount: 1,
+        modifiedCount: 1,
+        upsertedCount: 0
+        }
+
+
+------------------------------------------------------------------------------------------
+
+
+multiplication-------------------
+
+
+Ex -- 20% discount on where price is 800
+   -->  (800*0.2)+800  <-- Ans
+
+--> db.myproducts.updateMany({price:800},{$mul:{price:1.2}})
+        {
+        acknowledged: true,
+        insertedId: null,
+        matchedCount: 1,
+        modifiedCount: 1,
+        upsertedCount: 0
+        }
+
+Ex --  80% Discount 
+   --> eg. 57000*0.8 = 45600  <-- Ans
+
+--> db.myproducts.updateMany({},{$mul:{price:0.8}})
+        {
+        acknowledged: true,
+        insertedId: null,
+        matchedCount: 7,
+        modifiedCount: 7,
+        upsertedCount: 0
+        }
+
+
+------------------------------------------------------------------------------------------
+
+Coparision-----------------
+
+eq,ne,lt,lte,gt,gte,in,nin
+
+------------------------------------------------------------------------------------------
+ 
+  equal-----------
+
+        --> db.myproducts.find({price:{$eq:2240}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                    price: 2240,
+                    qty: 10,
+                    cat: 'fashion',
+                    pname: 'shirt'
+                }
+                ]
+
+  not equal -----------
+
+
+        --> db.myproducts.find({price:{$ne:2240}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c228"),
+                    price: 768,
+                    qty: 7,
+                    cat: 'fashion',
+                    pname: 'tshirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c229"),
+                    qty: 7,
+                    pname: 'sofa',
+                    price: 0
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22a"),
+                    price: 45600,
+                    qty: 5,
+                    cat: 'electronic',
+                    pname: 'tv'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22c"),
+                    qty: 7,
+                    pname: 'table',
+                    price: 0
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22d"),
+                    price: 29600,
+                    qty: 9,
+                    cat: 'electronic',
+                    pname: 'mobile'
+                },
+                {
+                    _id: ObjectId("6a3ccce03ed773ee33e4a5c9"),
+                    price: 27200,
+                    cat: 'electronic',
+                    pname: 'washingmachine',
+                    qty: 2
+                }
+                ]
+
+
+    less then ------------------
+
+        --> db.myproducts.find({price:{$lt:2240}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c228"),
+                    price: 768,
+                    qty: 7,
+                    cat: 'fashion',
+                    pname: 'tshirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c229"),
+                    qty: 7,
+                    pname: 'sofa',
+                    price: 0
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22c"),
+                    qty: 7,
+                    pname: 'table',
+                    price: 0
+                }
+                ]
+
+    less then and equal ----------
+
+        --> db.myproducts.find({price:{$lte:2240}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c228"),
+                    price: 768,
+                    qty: 7,
+                    cat: 'fashion',
+                    pname: 'tshirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c229"),
+                    qty: 7,
+                    pname: 'sofa',
+                    price: 0
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                    price: 2240,
+                    qty: 10,
+                    cat: 'fashion',
+                    pname: 'shirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22c"),
+                    qty: 7,
+                    pname: 'table',
+                    price: 0
+                }
+                ]
+
+
+     greater then -----------
+
+        --> db.myproducts.find({price:{$gt:2240}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22a"),
+                    price: 45600,
+                    qty: 5,
+                    cat: 'electronic',
+                    pname: 'tv'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22d"),
+                    price: 29600,
+                    qty: 9,
+                    cat: 'electronic',
+                    pname: 'mobile'
+                },
+                {
+                    _id: ObjectId("6a3ccce03ed773ee33e4a5c9"),
+                    price: 27200,
+                    cat: 'electronic',
+                    pname: 'washingmachine',
+                    qty: 2
+                }
+                ]           
+    greater then and equal -----------
+
+        --> db.myproducts.find({price:{$gte:2240}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22a"),
+                    price: 45600,
+                    qty: 5,
+                    cat: 'electronic',
+                    pname: 'tv'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                    price: 2240,
+                    qty: 10,
+                    cat: 'fashion',
+                    pname: 'shirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22d"),
+                    price: 29600,
+                    qty: 9,
+                    cat: 'electronic',
+                    pname: 'mobile'
+                },
+                {
+                    _id: ObjectId("6a3ccce03ed773ee33e4a5c9"),
+                    price: 27200,
+                    cat: 'electronic',
+                    pname: 'washingmachine',
+                    qty: 2
+                }
+                ]
+
+    in -------------
+
+
+        --> db.myproducts.find({qty:{$in:[5,7,10]}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c228"),
+                    price: 768,
+                    qty: 7,
+                    cat: 'fashion',
+                    pname: 'tshirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c229"),
+                    qty: 7,
+                    pname: 'sofa',
+                    price: 0
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22a"),
+                    price: 45600,
+                    qty: 5,
+                    cat: 'electronic',
+                    pname: 'tv'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                    price: 2240,
+                    qty: 10,
+                    cat: 'fashion',
+                    pname: 'shirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22c"),
+                    qty: 7,
+                    pname: 'table',
+                    price: 0
+                }
+                ]
+
+    not in ----------
+
+        -->  db.myproducts.find({qty:{$in:[5,7,10]}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c228"),
+                    price: 768,
+                    qty: 7,
+                    cat: 'fashion',
+                    pname: 'tshirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c229"),
+                    qty: 7,
+                    pname: 'sofa',
+                    price: 0
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22a"),
+                    price: 45600,
+                    qty: 5,
+                    cat: 'electronic',
+                    pname: 'tv'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                    price: 2240,
+                    qty: 10,
+                    cat: 'fashion',
+                    pname: 'shirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22c"),
+                    qty: 7,
+                    pname: 'table',
+                    price: 0
+                }
+                ]
+
+
+------------------------------------------------------------------------------------------
+
+Logical Operator
+
+and,or,nor,not
+
+------------------------------------------------------------------------------------------
+
+
+and -----------------
+
+
+        -->  db.myproducts.find({$and:[{price:2240},{pname:'shirt'}]})
+                    [
+                    {
+                        _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                        price: 2240,
+                        qty: 10,
+                        cat: 'fashion',
+                        pname: 'shirt'
+                    }
+                    ]
+
+or-------------------
+
+        -->  db.myproducts.find({$or:[{price:{$gt:40000}},{cat:'fashion'}]})
+                    [
+                    {
+                        _id: ObjectId("6a3cc9bb010924bfea74c228"),
+                        price: 768,
+                        qty: 7,
+                        cat: 'fashion',
+                        pname: 'tshirt'
+                    },
+                    {
+                        _id: ObjectId("6a3cc9bb010924bfea74c22a"),
+                        price: 45600,
+                        qty: 5,
+                        cat: 'electronic',
+                        pname: 'tv'
+                    },
+                    {
+                        _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                        price: 2240,
+                        qty: 10,
+                        cat: 'fashion',
+                        pname: 'shirt'
+                    }
+                    ]
+
+nor------------------
+
+
+not-----------------
+
+        --> db.myproducts.find({price:{$not:{$gt:3000}}})
+                [
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c228"),
+                    price: 768,
+                    qty: 7,
+                    cat: 'fashion',
+                    pname: 'tshirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c229"),
+                    qty: 7,
+                    pname: 'sofa',
+                    price: 0
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                    price: 2240,
+                    qty: 10,
+                    cat: 'fashion',
+                    pname: 'shirt'
+                },
+                {
+                    _id: ObjectId("6a3cc9bb010924bfea74c22c"),
+                    qty: 7,
+                    pname: 'table',
+                    price: 0
+                }
+                ]
+
+
+        -->  db.myproducts.find({qty:{$not:{$in:[5,7]}}})
+                    [
+                    {
+                        _id: ObjectId("6a3cc9bb010924bfea74c22b"),
+                        price: 2240,
+                        qty: 10,
+                        cat: 'fashion',
+                        pname: 'shirt'
+                    },
+                    {
+                        _id: ObjectId("6a3cc9bb010924bfea74c22d"),
+                        price: 29600,
+                        qty: 9,
+                        cat: 'electronic',
+                        pname: 'mobile'
+                    },
+                    {
+                        _id: ObjectId("6a3ccce03ed773ee33e4a5c9"),
+                        price: 27200,
+                        cat: 'electronic',
+                        pname: 'washingmachine',
+                        qty: 2
+                    }
+                    ]
+
+
+------------------------------------------------------------------------------------------
+
+
+count()--------------
+
+
+ --> db.myproducts.count()
+        DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+        7
+ --> db.myproducts.countDocuments()
+        7
+ --> db.myproducts.countDocuments({price:{$lt:30000}})
+        6
+ --> db.myproducts.find({price:{$lt:30000}}).count()
+        6
+
+
+------------------------------------------------------------------------------------------
+
+
+sort()--------------------
+
+1 --> Ascending 
+-1 --> Descending 
+
+ --> db.myproducts.find({},{pname:1,price:1,_id:0}).sort({price:-1})
+            [
+            { price: 45600, pname: 'tv' },
+            { price: 29600, pname: 'mobile' },
+            { price: 27200, pname: 'washingmachine' },
+            { price: 2240, pname: 'shirt' },
+            { price: 768, pname: 'tshirt' },
+            { pname: 'sofa', price: 0 },
+            { pname: 'table', price: 0 }
+            ]
+
+ --> db.myproducts.find({},{pname:1,price:1,_id:0}).sort({price:1})
+            [
+            { pname: 'sofa', price: 0 },
+            { pname: 'table', price: 0 },
+            { price: 768, pname: 'tshirt' },
+            { price: 2240, pname: 'shirt' },
+            { price: 27200, pname: 'washingmachine' },
+            { price: 29600, pname: 'mobile' },
+            { price: 45600, pname: 'tv' }
+            ]
+
+
+
+===================================================================================
+
+db.student.insertMany([{name:"abc",age:13,standard:6,perc:80},{name:"def",age:15,standard:8,perc:90},{name:"ghi",age:10,standard:3,perc:75},{name:"pqr",age:5,standard:1,perc:89},{name:"xyz",age:17,standard:12,perc:97}])
+
+
+Ex--	Find name of all students having age>5 
+
+ --> db.student.find({age:{$gt:5}},{name:1,_id:0})
+
+Ex--   Increase the standard for all students by 1.
+
+--> db.student.updateMany({},{$inc:{standard:1}})
+
+Ex--   Show the name of student who is the oldest student among all students.
+
+--> db.student.find({},{name:1,_id:0}).sort({age:-1}).limit(1).skip(1)
+        [ { name: 'def' } ]
+
+
+===================================================================================
+
+[{_id: 1,name: "Eric",age: 30,position: "Full Stack Developer",salary: 60000},
+{_id: 2,name: "Erica",age: 35,position: "Intern",salary: 8000},
+{_id: 3,name: "Erical",age: 40,position: "UX/UI Designer",salary: 56000},
+{_id: 4,name: "treric7",age: 37,position: "Team Leader",salary: 85000},
+{_id: 5,name: "Eliza",age: 25,position: "Software Developer",salary: 45000},
+{_id: 6,name: "Trian",age: 29,position: "Data Scientist",salary: 75000},
+{_id: 7,name: "Elizan",age: 25,position: "Full Stack Developer",salary: 49000}]
+
+
+1)	Find All Documents
+
+db.employees.find()
+
+2)	Find Documents by Position “Full Stack Developer”:
+
+db.employees.find({position:"Full Stack Developer"})
+
+3)	Retrieve name of employees whose age is greater than or equal to 25 and less than or equal to 40
+
+db.employees.find({age:{$gte:25,$lte:40}})
+
+4)	Retrieve name of the employee with the highest salary.
+
+db.employees.find({},{name:1,_id:0}).sort({salary:-1}).limit(1)
+
+5)	Retrieve employees with a salary greater than 50000.
+
+ db.employees.find({salary:{$gt:50000}})
+
+6)	Count the number of employees who have salary greater than 50000 
+
+db.employees.find({salary:{$gt:50000}}).count()
+
+7)	Retrieve employees who are either " Software Developer" or "Full Stack Developer" and are  below 30 years.
+
+ db.employees.find({$and:[{$or:[{position:'Software Devloper'},{position:'Full Stack Developer'}]},{age:{$lt:30}}]})
+
+ 8)	Increase the salary of an employee who has salary less than 50000 by 10%.
+
+ db.employees.updateOne({salary:{$lt:50000}},{$mul:{salary:1.1}})
+
+===================================================================================
+                               Aggregation (5 Marks)
+===================================================================================
+
+                                collection
+                                $match
+                                ^
+                                |
+                                $group  <-- $sum,$avg,$max,$min
+                                ^
+                                |
+                                $Software
+                                ^
+                                |
+                                $project
+
+------------------------------------------------------------------------------------------
+
+Ex--> give collection whoes city name is Surat.
+
+
+db.ljustudents.aggregate([{$match:{city:"Surat"}}])
+
+--> [
+  {
+    _id: ObjectId("6a41ef075342d49093a38007"),
+    name: 'B',
+    city: 'Surat',
+    marks: 70
+  },
+  {
+    _id: ObjectId("6a41ef075342d49093a38009"),
+    name: 'D',
+    city: 'Surat',
+    marks: 80
+  }
+]
+
+------------------------------------------------------------------------------------------
+
+Ex--> goruping city wise and count each other
+
+db.ljustudents.aggregate([{$group:{_id:"$city",total:{$sum:1}}}])
+
+ [
+  { _id: 'Surat', total: 2 },
+  { _id: 'Rajkot', total: 1 },
+  { _id: 'Ahmedabad', total: 2 }
+]
+
+------------------------------------------------------------------------------------------
+
+Ex--> city wise count average Marks
+
+db.ljustudents.aggregate([{$group:{_id:"$city",avgmarks:{$avg:"$marks"}}}])
+
+[
+  { _id: 'Ahmedabad', avgmarks: 87.5 },
+  { _id: 'Surat', avgmarks: 75 },
+  { _id: 'Rajkot', avgmarks: 85 }
+]
+
+-----------------------------------------------------------------------------------------------------------------
+
+Ex--> sort marks vise
+
+db.ljustudents.aggregate([{$sort:{marks:-1}}])
+
+ {
+    _id: ObjectId("6a41ef075342d49093a38008"),
+    name: 'C',
+    city: 'Ahmedabad',
+    marks: 90
+  },
+  {
+    _id: ObjectId("6a41ef075342d49093a38006"),
+    name: 'A',
+    city: 'Ahmedabad',
+    marks: 85
+  },
+  {
+    _id: ObjectId("6a41ef075342d49093a3800a"),
+    name: 'E',
+    city: 'Rajkot',
+    marks: 85
+  },
+  {
+    _id: ObjectId("6a41ef075342d49093a38009"),
+    name: 'D',
+    city: 'Surat',
+    marks: 80
+  },
+  {
+    _id: ObjectId("6a41ef075342d49093a38007"),
+    name: 'B',
+    city: 'Surat',
+    marks: 70
+  }
+
+---------------------------------------------------------------------------------------------------------------
+
+Ex--> display marks and name
+
+db.ljustudents.aggregate([{$project:{name:1,marks:1,_id:0}}])
+
+[
+  { name: 'A', marks: 85 },
+  { name: 'B', marks: 70 },
+  { name: 'C', marks: 90 },
+  { name: 'D', marks: 80 },
+  { name: 'E', marks: 85 }
+]
+
+-----------------------------------------------------------------------------------------------------------------
+
+Ex--> Calculate average marks of students in each city and sort the result in descending order of average marks.
+      Display name and average marks of the students
+
+
+db.ljustudents.aggregate([{$group:{_id:"$city",avgmarks:{$avg:"$marks"}}},{$sort:{avgmarks:-1}},{$project:{_id:0,city:"$_id",avgmarks:1}}])
+
+[
+  { avgmarks: 87.5, city: 'Ahmedabad' },
+  { avgmarks: 85, city: 'Rajkot' },
+  { avgmarks: 75, city: 'Surat' }
+]
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+Ex--> Select the students whose marks are >=80
+      Calculate city wise total marks and sort in ascending order od total marks and display only city and marks.
+
+
+ db.ljustudents.aggregate([{$match:{marks:{$gte:80}}},{$group:{_id:"$city",total:{$sum:"$marks"}}},{$sort:{total:1}},{$project:{_id:0,city:"$_id",total:1}}])
+
+ [
+  { total: 80, city: 'Surat' },
+  { total: 85, city: 'Rajkot' },
+  { total: 175, city: 'Ahmedabad' }
+]
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+Ex--> Calculate the total amount and highest amount for each category if the amount is greater than 1000.
+      sort result in ascending order of total amount and display total amount,highest
+      amount and the category.
+
+
+    --> db.orders.aggregate([{$match:{amount:{$gt:10000}}},{$group:{_id:'$category',total:{$sum:'$amount'},maxamount:{$max:'$amount'}}},{$sort:{total:1}},{$project:{total:'$total',category:'$_id',_id:0,maxamount:1}}])
+    
+        [ { maxamount: 55000, total: 132000, category: 'Electronics' } ]
