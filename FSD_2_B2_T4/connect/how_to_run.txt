@@ -1,0 +1,7 @@
+// split terminal
+
+// terminal 1
+// -- PS D:\Mongoose\connect\client> npm run dev
+
+// terminal 2
+// -- PS D:\Mongoose\connect\server> node server.js
